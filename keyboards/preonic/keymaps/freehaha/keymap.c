@@ -24,7 +24,6 @@ enum preonic_layers {
   _EXTR,
   _FN,
   _GAME,
-  _GAME2,
   _GAME_EXT,
   _ADJUST
 };
@@ -113,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
    * |        |        |        |        |        |        |        |        |        |        |        |        |        | RESET  |        |
    * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-   * |        | CMK    | GAME   |        |        |        |        |        |        |        |        |        |        |        |        |
+   * | GAME   |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
    * |--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
    * |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |
    * '--------------------------------------------------------------------------------------------------------------------------------------'
@@ -121,10 +120,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_FN] = LAYOUT_preonic_grid( /* FUNCTION */
                               KC_F1,   KC_F2,      KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,  KC_F12,  \
-                              _______, _______, _______,    _______, _______, _______, KC_HOME, KC_PGUP, KC_UP,   KC_PGDN,  _______, KC_PSCR,  \
-                              _______, _______, _______,    _______, _______, _______, KC_END,  KC_LEFT, KC_DOWN, KC_RIGHT, KC_INS,  KC_SLCK, \
-                              TG(_GAME2), TG(_GAME),    _______,    _______, _______, _______, _______, _______, _______, _______,  _______, KC_PAUSE, \
-                              _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______,  _______, _______ \
+                              _______,   _______, _______,    _______, _______, _______, KC_HOME, KC_PGUP, KC_UP,   KC_PGDN,  _______, KC_PSCR,  \
+                              _______,   _______, _______,    _______, _______, _______, KC_END,  KC_LEFT, KC_DOWN, KC_RIGHT, KC_INS,  KC_SLCK, \
+                              TG(_GAME), _______, _______,    _______, _______, _______, _______, _______, _______, _______,  _______, KC_PAUSE, \
+                              _______,   _______, _______,    _______, _______, _______, _______, _______, _______, _______,  _______, _______ \
                                ),
 
 #define GEXT MO(_GAME_EXT)
@@ -133,14 +132,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #define MRECS DYN_REC_STOP
 
   [_GAME] = LAYOUT_preonic_grid( /* GAME MODE */
-                                KC_GRAVE,      KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,     KC_9,    KC_0,      KC_HOME,  \
-                                KC_TAB,        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,      KC_END, \
-                                KC_LCTL,       KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,     KC_L,    KC_SCOLON, KC_ENTER, \
-                                KC_LSFT,       KC_Z,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,     KC_UP,   KC_DOT,    KC_SLASH, \
-                                CTL_T(KC_ESC), GEXT, KC_LGUI, KC_LSFT,    GEXT,  KC_SPC,    MPLAY,   KC_SPC,  KC_LEFT,  KC_DOWN, KC_RIGHT,  GAME
-
-                                 ),
-  [_GAME2] = LAYOUT_preonic_grid( /* GAME MODE */
                                  KC_GRAVE,      KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,     KC_9,    KC_0,      KC_HOME,  \
                                  KC_TAB,        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,     KC_O,    KC_P,      KC_END, \
                                  KC_LCTL,       KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,     KC_L,    KC_SCOLON, KC_ENTER, \
@@ -151,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_GAME_EXT] = LAYOUT_preonic_grid( /* GAME EXT */
                                     KC_ESC,     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_MINUS,  \
                                     KC_LBRC,    KC_KP_1, KC_KP_2, KC_KP_3, KC_KP_4, KC_KP_5, KC_KP_6, KC_KP_7, KC_KP_8, KC_KP_9, KC_KP_0, _______,   \
-                                    KC_RBRC,    KC_F10,  KC_QUOT, KC_MINUS,FF_QE,   _______, _______, KC_GRAVE,KC_F12,  _______, _______, _______,   \
+                                    KC_RBRC,    KC_F11,  KC_QUOT, KC_MINUS,KC_GRAVE, _______, _______, KC_GRAVE,KC_F12,  _______, _______, _______,   \
                                     XXXXXXX,    _______, _______, _______, _______, _______, _______, MREC,    _______, _______, _______, _______,   \
                                     LGUI(KC_N), _______, _______, _______, _______, _______, _______, MRECS,   _______, _______, _______, _______ \
                                      ),
@@ -229,7 +220,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   case GAME:
     if (record->event.pressed) {
       layer_off(_GAME);
-      layer_off(_GAME2);
     }
     return false;
     break;
