@@ -152,6 +152,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 		case SYMBL_ESC:
 		case SYMBR_ENT:
+		case LSFT_T(KC_CAPS):
             return 100;
         default:
             return TAPPING_TERM;
