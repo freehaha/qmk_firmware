@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_CAPS,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_LEFT,                                        KC_RIGHT,       KC_6,           KC_7,           KC_8,           KC_9,           KC_0,             KC_NO,
     KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           OSL(_SWITCH),                                   TG(_UTIL),      KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,             KC_BSPC,
     KC_BSPACE,      LCTL_T(KC_A),   KC_S,           KC_D,           KC_F,           KC_G,                                                                           KC_H,           KC_J,           KC_K,           KC_L,           LT(_FN, KC_SCLN), LGUI_T(KC_QUOTE),
-    KC_LSFT,        LCTL_T(KC_Z),   KC_X,           KC_C,           KC_V,           KC_B,           KC_HYPR,                                        KC_MEH,         KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH), KC_SFTENT,
+    KC_LSFT,        LCTL_T(KC_Z),   KC_X,           KC_C,           KC_V,           KC_B,           KC_HYPR,                                        KC_MEH,         KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH), KC_RSFT,
 	KC_ESC,         OSL(_FN),       KC_LALT,        KC_LGUI,        CENT,                                                                                                           SFT_SPC,        KC_GRAVE,       KC_LBRACKET,    MO(_FN),          KC_ESC,
                                                                                                     LCA_T(KC_APPLICATION),  KC_LGUI, KC_LALT,       LCTL_T(KC_ESCAPE),
                                                                                                                             KC_HOME, KC_PGUP,
@@ -78,11 +78,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_TRNS,                                        KC_TRANSPARENT, KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_TRANSPARENT,
     KC_DELETE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                                                          KC_F6,          KC_MINUS,       KC_EQUAL,       KC_LBRACKET,    KC_RBRACKET,    KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_TRNS,                                        KC_TRANSPARENT, KC_F12,         KC_BSLASH,      KC_ESCAPE,      KC_TRANSPARENT, PASTE,          KC_TRANSPARENT,
+    KC_CAPS,        KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         KC_TRNS,                                        KC_TRANSPARENT, KC_F12,         KC_BSLASH,      KC_ESCAPE,      KC_TRANSPARENT, PASTE,          KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT,
-                                                                                    KC_TRANSPARENT, KC_DELETE,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
+                                                                                    KC_ESC,         KC_DELETE,      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT
   ),
   [_UTIL] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRNS,
@@ -154,6 +154,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case SYMBL_ESC:
 		case SYMBR_ENT:
             return 100;
+		case SFT_SPC:
+			return 150;
         default:
             return TAPPING_TERM;
     }
