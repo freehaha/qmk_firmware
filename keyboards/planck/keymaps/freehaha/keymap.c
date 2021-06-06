@@ -52,9 +52,8 @@ enum planck_keycodes {
 #define MPLAY DYN_MACRO_PLAY1
 #define MREC DYN_REC_START1
 #define MRECS DYN_REC_STOP
-#define ZCTL MT(MOD_LCTL, KC_Z)
+#define ACTL MT(MOD_LCTL, KC_A)
 #define SLCTL MT(MOD_LCTL, KC_SLSH)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -70,8 +69,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,     KC_U,    KC_I,     KC_O,    KC_P,    KC_BSPC,
-    KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,     KC_J,    KC_K,     KC_L,    KC_SCLN, KC_QUOT,
-    KC_LSFT, ZCTL,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,     KC_M,    KC_COMM,  KC_DOT,  SLCTL,   SENT,
+    KC_BSPC, ACTL,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,     KC_J,    KC_K,     KC_L,    KC_SCLN, KC_QUOT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,     KC_M,    KC_COMM,  KC_DOT,  SLCTL,   SENT,
     KC_ESC,  MO(_FN), KC_LALT, KC_LGUI, CENT,    EXT,     EXTR,     KC_SPC,  KC_GRAVE, KC_DEL,  MO(_FN), MO(_FN)
 ),
 
@@ -88,8 +87,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_COLEMAK] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,     KC_L,    KC_U,     KC_Y,    KC_SCLN, KC_BSPC,
-    KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_K,     KC_N,    KC_E,     KC_I,    KC_O,    KC_QUOT,
-    KC_LSFT, KC_TRNS, KC_X,    KC_C,    KC_V,    KC_B,    KC_K,     KC_M,    KC_COMM,  KC_DOT,  KC_TRNS, SENT,
+    KC_LCTL, ACTL,    KC_R,    KC_S,    KC_T,    KC_G,    KC_K,     KC_N,    KC_E,     KC_I,    KC_O,    KC_QUOT,
+    KC_LSFT, KC_TRNS, KC_X,    KC_C,    KC_D,    KC_V,    KC_M,     KC_H,    KC_COMM,  KC_DOT,  KC_TRNS, SENT,
     KC_ESC,  MO(_FN), KC_LALT, KC_LGUI, CENT,    EXT,     EXTR,     KC_SPC,  KC_GRAVE, KC_DEL,  MO(_FN), MO(_FN)
 ),
 
@@ -105,10 +104,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_EXT] = LAYOUT_planck_grid(
-		KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,    KC_LPRN, KC_RPRN, KC_BSPC,
-		_______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS,    KC_PLUS,    KC_LCBR, KC_RCBR, KC_ESC,
-		_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PIPE,    S(KC_NUBS), KC_HOME, KC_END,  _______,
-		_______, _______, _______, _______, _______, _______, _______, KC_BSPC,    _______,    _______, _______, _______
+		KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,   KC_LPRN, KC_RPRN, KC_BSPC,
+		_______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS,    KC_PLUS,   KC_LCBR, KC_RCBR, KC_ESC,
+		_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PIPE,    KC_ENT,    KC_ESC,  KC_END,  _______,
+		_______, _______, _______, _______, _______, _______, KC_ESC,  KC_BSPC,    _______,   _______, _______, _______
 		),
 
 /* EXTR
@@ -124,17 +123,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_EXTR] = LAYOUT_planck_grid(
-		KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
-		_______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS,
-		_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, _______,
-		_______, _______, _______, _______, _______, _______, _______, KC_BSPC, _______, _______, _______, _______
+		KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,        KC_DEL,
+		_______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC,     KC_BSLS,
+		_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_BSLS, KC_ENT,  KC_ESC,  TO(_ADJUST), _______,
+		_______, _______, _______, _______, _______, KC_ESC,  KC_NO,   KC_BSPC, _______, _______, _______,     _______
 		),
 
 [_FN] = LAYOUT_planck_grid( /* FUNCTION */
-		KC_F1,     KC_F2,   KC_F3,      KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,       KC_F12,
-		_______,   _______, _______,    _______, _______, _______, KC_HOME, KC_PGUP, KC_UP,   KC_PGDN,  _______,      KC_PSCR,
-		_______,   _______, _______,    _______, _______, _______, KC_END,  KC_LEFT, KC_DOWN, KC_RIGHT, KC_INS,       KC_SLCK,
-		TG(_GAME), _______, _______,    _______, _______, _______, _______, _______, _______, _______,  TG(_NUMBERS), KC_PAUSE
+		KC_F1,     KC_F2,   KC_F3,      KC_F4,   KC_F5,   KC_F6,      KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,       KC_F12,
+		_______,   _______, _______,    _______, _______, _______,    KC_HOME, KC_PGUP, KC_UP,   KC_PGDN,  _______,      KC_PSCR,
+		_______,   _______, _______,    _______, _______, _______,    KC_END,  KC_LEFT, KC_DOWN, KC_RIGHT, KC_INS,       KC_SLCK,
+		TG(_GAME), _______, _______,    _______, _______, TO(QWERTY), _______, _______, _______, _______,  TG(_NUMBERS), KC_PAUSE
 		),
 
 [_GAME] = LAYOUT_planck_grid( /* GAME MODE */
@@ -178,10 +177,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_planck_grid(
-    _______, _______, _______, _______, _______, KC_WH_U, KC_BTN2, KC_BTN1, KC_MS_U, KC_ENT,  _______, QWERTY,
-    _______, _______, DEBUG,   _______, _______, KC_WH_D, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, COLEMAK,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET
+		_______, _______, KC_MS_L, KC_MS_U, KC_MS_R, KC_WH_U,     KC_BTN2, KC_BTN1, KC_MS_U, KC_ENT,  _______, QWERTY,
+		_______, _______, KC_BTN2, KC_MS_D, KC_BTN3, KC_WH_D,     _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, COLEMAK,
+		_______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______,
+		_______, _______, _______, KC_BTN2, KC_BTN1, TO(_QWERTY), _______, _______, _______, _______, _______, RESET
 	)
 };
 
@@ -230,24 +229,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			return false;
 			break;
 		case EXT:
-			if (record->event.pressed) {
-				layer_on(_EXT);
-				update_tri_layer(_EXT, _EXTR, _ADJUST);
-			} else {
-				layer_off(_EXT);
-				update_tri_layer(_EXT, _EXTR, _ADJUST);
-			}
-			return false;
+			/* if (record->event.pressed) { */
+			/* 	layer_on(_EXT); */
+			/* 	update_tri_layer(_EXT, _EXTR, _ADJUST); */
+			/* } else { */
+			/* 	layer_off(_EXT); */
+			/* 	update_tri_layer(_EXT, _EXTR, _ADJUST); */
+			/* } */
+			return true;
 			break;
 		case EXTR:
-			if (record->event.pressed) {
-				layer_on(_EXTR);
-				update_tri_layer(_EXT, _EXTR, _ADJUST);
-			} else {
-				layer_off(_EXTR);
-				update_tri_layer(_EXT, _EXTR, _ADJUST);
-			}
-			return false;
+			/* if (record->event.pressed) { */
+			/* 	layer_on(_EXTR); */
+			/* 	update_tri_layer(_EXT, _EXTR, _ADJUST); */
+			/* } else { */
+			/* 	layer_off(_EXTR); */
+			/* 	update_tri_layer(_EXT, _EXTR, _ADJUST); */
+			/* } */
+			return true;
 			break;
 		case FOREGROUND:
 			if (record->event.pressed) {
