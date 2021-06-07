@@ -24,19 +24,16 @@ enum planck_layers {
   _EXT,
   _EXTR,
   _FN,
-  _GAME,
-  _GAME_EXT,
-  _GAME_EXT2,
   _NUMBERS,
-  _ADJUST
+  _SWITCH,
 };
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
   COLEMAK,
   GAME,
-  EXT,
-  EXTR,
+  /* EXT, */
+  /* EXTR, */
   FOREGROUND,
   PASTE,
   DYNAMIC_MACRO_RANGE,
@@ -125,47 +122,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_EXTR] = LAYOUT_planck_grid(
 		KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,        KC_DEL,
 		_______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC,     KC_BSLS,
-		_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_BSLS, KC_ENT,  KC_ESC,  TO(_ADJUST), _______,
-		_______, _______, _______, _______, _______, KC_ESC,  KC_NO,   KC_BSPC, _______, _______, _______,     _______
+		KC_CAPS, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_BSLS, KC_ENT,  KC_ESC,  TG(_SWITCH), TG(_FN),
+		_______, _______, _______, _______, _______, KC_ESC,  KC_TRNS, KC_BSPC, _______, _______, _______,     _______
 		),
 
 [_FN] = LAYOUT_planck_grid( /* FUNCTION */
 		KC_F1,     KC_F2,   KC_F3,      KC_F4,   KC_F5,   KC_F6,      KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,       KC_F12,
 		_______,   _______, _______,    _______, _______, _______,    KC_HOME, KC_PGUP, KC_UP,   KC_PGDN,  _______,      KC_PSCR,
 		_______,   _______, _______,    _______, _______, _______,    KC_END,  KC_LEFT, KC_DOWN, KC_RIGHT, KC_INS,       KC_SLCK,
-		TG(_GAME), _______, _______,    _______, _______, TO(QWERTY), _______, _______, _______, _______,  TG(_NUMBERS), KC_PAUSE
-		),
-
-[_GAME] = LAYOUT_planck_grid( /* GAME MODE */
-		KC_GRAVE,   GEXT2,   KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_NO,   KC_UP,    KC_NO,   KC_NO,     KC_HOME,
-		KC_LSFT,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_NO,   KC_LEFT, KC_DOWN,  KC_RIGHT,KC_P,      KC_END,
-		KC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_NO,   KC_NO,    KC_NO,   KC_NO,     KC_ENT,
-		GEXT,       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_SPC,  KC_NO,    KC_NO,   KC_NO,     GAME
-		),
-
-[_GAME_EXT] = LAYOUT_planck_grid( /* GAME EXT */
-		KC_ESC,  _______, S(KC_2), S(KC_2), S(KC_3),  S(KC_4), S(KC_5), KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,
-		KC_F10,  _______, _______, _______, KC_TAB,   KC_RBRC, KC_LBRC, KC_GRAVE, KC_F12,  KC_NO,   KC_NO,   KC_NO,
-		KC_NO,   _______, _______, _______, _______,  KC_KP_5, _______, _______,  _______, _______, _______, _______,
-		_______, _______, _______, _______, _______,  KC_SPC,  _______, _______,  _______, _______, _______, _______
-		),
-
-[_GAME_EXT2] = LAYOUT_planck_grid( /* GAME EXT */
-		KC_ESC,  _______, KC_F1,   KC_F2,   KC_F3,    S(KC_4), S(KC_5), KC_NO,    KC_NO,   KC_NO,   KC_NO,   KC_NO,
-		KC_F10,  _______, _______, _______, KC_TAB,   KC_RBRC, KC_LBRC, KC_GRAVE, KC_F12,  KC_NO,   KC_NO,   KC_NO,
-		KC_NO,   _______, _______, _______, _______,  KC_KP_5, _______, _______,  _______, _______, _______, _______,
-		_______, _______, _______, _______, _______,  KC_SPC,  _______, _______,  _______, _______, _______, _______
+		_______, _______, _______,    _______, _______, TO(_QWERTY),_______, _______, _______, _______,  TG(_NUMBERS), KC_PAUSE
 		),
 
 [_NUMBERS] = LAYOUT_planck_grid( /* NUM PAD */
-		_______, _______, _______, _______, _______,  _______, _______, KC_7,    KC_8,    KC_9,    KC_NO,   KC_NO,
-		KC_F10,  _______, _______, _______, KC_TAB,   _______, _______, KC_4,    KC_5,    KC_6,    KC_NO,   KC_NO,
-		KC_NO,   _______, _______, _______, _______,  _______, _______, KC_1,    KC_2,    KC_3,    _______, _______,
+		_______, _______, _______, _______, _______,  _______, _______, KC_7,    KC_8,    KC_9,    KC_NO,        KC_NO,
+		KC_F10,  _______, _______, _______, KC_TAB,   _______, _______, KC_4,    KC_5,    KC_6,    KC_NO,        KC_NO,
+		KC_NO,   _______, _______, _______, _______,  _______, _______, KC_1,    KC_2,    KC_3,    _______,      _______,
 		_______, _______, _______, _______, _______,  _______, _______, KC_0,    _______, KC_DOT,  TG(_NUMBERS), TG(_NUMBERS)
 		),
 
-/* Adjust (Lower + Raise)
- *                      v------------------------RGB CONTROL--------------------v
+/* Adjust
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |             |      |      |      |      | QWERT|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -176,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |      |      | RESET|
  * `-----------------------------------------------------------------------------------'
  */
-[_ADJUST] = LAYOUT_planck_grid(
+[_SWITCH] = LAYOUT_planck_grid(
 		_______, _______, KC_MS_L, KC_MS_U, KC_MS_R, KC_WH_U,     KC_BTN2, KC_BTN1, KC_MS_U, KC_ENT,  _______, QWERTY,
 		_______, _______, KC_BTN2, KC_MS_D, KC_BTN3, KC_WH_D,     _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, COLEMAK,
 		_______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______,
@@ -198,9 +173,9 @@ float tone_game[][2]    = SONG(GUITAR_SOUND);
 float tone_goodbye[][2]    = SONG(GOODBYE_SOUND);
 #endif
 
-layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _EXT, _EXTR, _ADJUST);
-}
+/* layer_state_t layer_state_set_user(layer_state_t state) { */
+/*   return update_tri_layer_state(state, _EXT, _EXTR, _ADJUST); */
+/* } */
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
@@ -222,12 +197,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			}
 			return false;
 			break;
-		case GAME:
-			if (record->event.pressed) {
-				layer_off(_GAME);
-			}
-			return false;
-			break;
+		/* case GAME: */
+		/* 	if (record->event.pressed) { */
+		/* 		layer_off(_GAME); */
+		/* 	} */
+		/* 	return false; */
+		/* 	break; */
 		case EXT:
 			/* if (record->event.pressed) { */
 			/* 	layer_on(_EXT); */
@@ -247,12 +222,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			/* 	update_tri_layer(_EXT, _EXTR, _ADJUST); */
 			/* } */
 			return true;
-			break;
-		case FOREGROUND:
-			if (record->event.pressed) {
-				SEND_STRING("eg" SS_TAP(X_ENTER));
-			} else {
-			}
 			break;
 		case PASTE:
 			if (record->event.pressed) {

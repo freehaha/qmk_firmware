@@ -38,10 +38,19 @@
 #define ONESHOT_TAP_TOGGLE 3
 #define ONESHOT_TIMEOUT 3500
 
-#define MOUSEKEY_INTERVAL       20
+// #define MOUSEKEY_INTERVAL       20
+// #define MOUSEKEY_DELAY          0
+// #define MOUSEKEY_TIME_TO_MAX    60
+// #define MOUSEKEY_MAX_SPEED      7
+// #define MOUSEKEY_WHEEL_DELAY 0
+
+#define MK_KINETIC_SPEED
+#define MOUSEKEY_INTERVAL       12
+#define MOUSEKEY_MOVE_DELTA     2
 #define MOUSEKEY_DELAY          0
-#define MOUSEKEY_TIME_TO_MAX    60
-#define MOUSEKEY_MAX_SPEED      7
+#define MOUSEKEY_TIME_TO_MAX    20
+#define MOUSEKEY_MAX_SPEED      12
 #define MOUSEKEY_WHEEL_DELAY 0
+
 
 #define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
