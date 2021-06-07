@@ -51,6 +51,18 @@ enum planck_keycodes {
 #define MRECS DYN_REC_STOP
 #define ACTL MT(MOD_LCTL, KC_A)
 #define SLCTL MT(MOD_LCTL, KC_SLSH)
+
+// home row mods
+#define HM_A MT(MOD_LGUI, KC_A)
+#define HM_S MT(MOD_LALT, KC_S)
+#define HM_D MT(MOD_LSFT, KC_D)
+#define HM_F MT(MOD_LCTL, KC_F)
+
+#define HM_J MT(MOD_LCTL, KC_J)
+#define HM_K MT(MOD_LSFT, KC_K)
+#define HM_L MT(MOD_LALT, KC_L)
+#define HM_SCLN MT(MOD_LGUI, KC_SCLN)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -66,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,     KC_U,    KC_I,     KC_O,    KC_P,    KC_BSPC,
-    KC_BSPC, ACTL,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,     KC_J,    KC_K,     KC_L,    KC_SCLN, KC_QUOT,
+    KC_BSPC, HM_A,    HM_S,    HM_D,    HM_F,    KC_G,    KC_H,     HM_J,    HM_K,     HM_L,    HM_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,     KC_M,    KC_COMM,  KC_DOT,  SLCTL,   SENT,
     KC_ESC,  MO(_FN), KC_LALT, KC_LGUI, CENT,    EXT,     EXTR,     KC_SPC,  KC_GRAVE, KC_DEL,  MO(_FN), MO(_FN)
 ),
@@ -234,13 +246,45 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	return true;
 }
 
+
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case CENT:
-        case SENT:
+		case CENT:
             return false;
         default:
             return true;
+    }
+}
+
+bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+		case HM_A:
+		case HM_S:
+		case HM_D:
+		case HM_F:
+		case HM_J:
+		case HM_K:
+		case HM_L:
+		case HM_SCLN:
+            return true;
+        default:
+            return false;
+    }
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+		case HM_A:
+		case HM_S:
+		case HM_D:
+		case HM_F:
+		case HM_J:
+		case HM_K:
+		case HM_L:
+		case HM_SCLN:
+			return 150;
+        default:
+            return TAPPING_TERM;
     }
 }
 
