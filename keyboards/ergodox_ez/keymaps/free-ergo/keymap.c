@@ -53,12 +53,16 @@ enum layers {
 #define HM_L MT(MOD_RALT, KC_L)
 #define HM_SCLN MT(MOD_RGUI, KC_SCLN)
 
+#define HM_O MT(MOD_RSFT, KC_O)
+#define HM_W MT(MOD_LSFT, KC_W)
+
+
 #define PASTE S(KC_INS)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QW] = LAYOUT_ergodox_pretty(
     KC_CAPS,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_LEFT,                                        KC_RIGHT,       KC_6,           KC_7,           KC_8,           KC_9,           KC_0,        KC_NO,
-    KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           OSL(_SWITCH),                                   TG(_UTIL),      KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,        KC_BSPC,
-    KC_BSPC,        HM_A,           HM_S,           HM_D,           HM_F,           KC_G,                                                                           KC_H,           HM_J,           HM_K,           HM_L,           HM_SCLN,     LGUI_T(KC_QUOTE),
+    KC_TAB,         KC_Q,           HM_W,           KC_E,           KC_R,           KC_T,           OSL(_SWITCH),                                   TG(_UTIL),      KC_Y,           KC_U,           KC_I,           HM_O,           KC_P,        KC_BSPC,
+    KC_BSPC,        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                                                           KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,     LGUI_T(KC_QUOTE),
     KC_LSFT,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_HYPR,                                        KC_MEH,         KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,    KC_RSFT,
 	KC_ESC,         OSL(_FN),       KC_LALT,        KC_LGUI,        CENT,                                                                                                           KC_SPC,         KC_GRAVE,       KC_LBRACKET,    MO(_FN),     KC_ESC,
                                                                                                     LCA_T(KC_APPLICATION),  KC_LGUI, KC_LALT,       LCTL_T(KC_ESCAPE),
@@ -187,6 +191,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 			return TAPPING_TERM - 50;
 		case HM_SCLN:
 		case HM_A:
+		case HM_O:
+		case HM_W:
 			return TAPPING_TERM + 30;
 		case SYMBL_ESC:
 		case SYMBR_ENT:
@@ -222,13 +228,15 @@ bool bigram(keyrecord_t *record, uint16_t mod, uint16_t keycode1, uint16_t keyco
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	mod_state = get_mods();
-	switch(keycode) {
-		case HM_L:
-			return bigram(record, KC_RSHIFT, KC_K, KC_L);
-		case HM_S:
-			return bigram(record, KC_LSHIFT, KC_D, KC_S);
-	}
+	/* mod_state = get_mods(); */
+	/* switch(keycode) { */
+	/* 	case HM_J: */
+	/* 		return bigram(record, KC_RALT, KC_L, KC_J); */
+	/* 	case HM_L: */
+	/* 		return bigram(record, KC_RSHIFT, KC_K, KC_L); */
+	/* 	case HM_S: */
+	/* 		return bigram(record, KC_LSHIFT, KC_D, KC_S); */
+	/* } */
 	return true;
 }
 
