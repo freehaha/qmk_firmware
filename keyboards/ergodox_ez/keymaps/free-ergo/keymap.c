@@ -48,10 +48,10 @@ enum layers {
 #define HM_D MT(MOD_LSFT, KC_D)
 #define HM_F MT(MOD_LCTL, KC_F)
 
-#define HM_J MT(MOD_LCTL, KC_J)
-#define HM_K MT(MOD_LSFT, KC_K)
-#define HM_L MT(MOD_LALT, KC_L)
-#define HM_SCLN MT(MOD_LGUI, KC_SCLN)
+#define HM_J MT(MOD_RCTL, KC_J)
+#define HM_K MT(MOD_RSFT, KC_K)
+#define HM_L MT(MOD_RALT, KC_L)
+#define HM_SCLN MT(MOD_RGUI, KC_SCLN)
 
 #define PASTE S(KC_INS)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -178,15 +178,16 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-		case HM_A:
 		case HM_S:
 		case HM_D:
 		case HM_F:
 		case HM_J:
 		case HM_K:
 		case HM_L:
+			return TAPPING_TERM - 50;
 		case HM_SCLN:
-			return 150;
+		case HM_A:
+			return TAPPING_TERM + 30;
 		case SYMBL_ESC:
 		case SYMBR_ENT:
             return 100;
@@ -204,41 +205,62 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 /*     } */
 /* } */
 
+uint8_t mod_state;
+
+bool bigram(keyrecord_t *record, uint16_t mod, uint16_t keycode1, uint16_t keycode2);
+bool bigram(keyrecord_t *record, uint16_t mod, uint16_t keycode1, uint16_t keycode2) {
+	if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
+		if (mod_state & MOD_BIT(mod)) {
+			unregister_code(mod);
+			tap_code(keycode1);
+			tap_code(keycode2);
+			set_mods(mod_state);
+			return false;
+		}
+	}
+	return true;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-  }
-  return true;
+	mod_state = get_mods();
+	switch(keycode) {
+		case HM_L:
+			return bigram(record, KC_RSHIFT, KC_K, KC_L);
+		case HM_S:
+			return bigram(record, KC_LSHIFT, KC_D, KC_S);
+	}
+	return true;
 }
 
 uint32_t layer_state_set_user(uint32_t state) {
-  uint8_t layer = biton32(state);
-  ergodox_board_led_off();
-  ergodox_right_led_1_off();
-  ergodox_right_led_2_off();
-  ergodox_right_led_3_off();
-  switch (layer) {
-    case _SYMBL:
-      ergodox_right_led_1_on();
-      break;
-    case _SYMBR:
-      ergodox_right_led_2_on();
-      break;
-    case _UTIL:
-      ergodox_right_led_3_on();
-      break;
-    case _FN:
-      ergodox_right_led_1_on();
-      ergodox_right_led_2_on();
-      break;
-    case 30: // not used atm
-      ergodox_right_led_1_on();
-      ergodox_right_led_3_on();
-      break;
-    case _SWITCH:
-      ergodox_right_led_2_on();
-      ergodox_right_led_3_on();
-      break;
-    case _GAME:
+	uint8_t layer = biton32(state);
+	ergodox_board_led_off();
+	ergodox_right_led_1_off();
+	ergodox_right_led_2_off();
+	ergodox_right_led_3_off();
+	switch (layer) {
+		case _SYMBL:
+			ergodox_right_led_1_on();
+			break;
+		case _SYMBR:
+			ergodox_right_led_2_on();
+			break;
+		case _UTIL:
+			ergodox_right_led_3_on();
+			break;
+		case _FN:
+			ergodox_right_led_1_on();
+			ergodox_right_led_2_on();
+			break;
+		case 30: // not used atm
+			ergodox_right_led_1_on();
+			ergodox_right_led_3_on();
+			break;
+		case _SWITCH:
+			ergodox_right_led_2_on();
+			ergodox_right_led_3_on();
+			break;
+		case _GAME:
       ergodox_right_led_1_on();
       ergodox_right_led_2_on();
       ergodox_right_led_3_on();
