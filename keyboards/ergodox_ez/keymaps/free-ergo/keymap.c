@@ -55,7 +55,7 @@ enum layers {
 
 #define HM_O MT(MOD_RSFT, KC_O)
 #define HM_W MT(MOD_LSFT, KC_W)
-
+#define CTL_SL RCTL_T(KC_SLASH)
 
 #define PASTE S(KC_INS)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_CAPS,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_LEFT,                                        KC_RIGHT,       KC_6,           KC_7,           KC_8,           KC_9,           KC_0,        KC_NO,
     KC_TAB,         KC_Q,           HM_W,           KC_E,           KC_R,           KC_T,           OSL(_SWITCH),                                   TG(_UTIL),      KC_Y,           KC_U,           KC_I,           HM_O,           KC_P,        KC_BSPC,
     KC_BSPC,        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                                                           KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,     LGUI_T(KC_QUOTE),
-    KC_LSFT,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_HYPR,                                        KC_MEH,         KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,    KC_RSFT,
+    KC_LSFT,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_HYPR,                                        KC_MEH,         KC_N,           KC_M,           KC_COMMA,       LCTL_T(KC_DOT), CTL_SL,      KC_RSFT,
 	KC_ESC,         OSL(_FN),       KC_LALT,        KC_LGUI,        CENT,                                                                                                           KC_SPC,         KC_GRAVE,       KC_LBRACKET,    MO(_FN),     KC_ESC,
                                                                                                     LCA_T(KC_APPLICATION),  KC_LGUI, KC_LALT,       LCTL_T(KC_ESCAPE),
                                                                                                                             KC_HOME, KC_PGUP,
@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_UTIL] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRNS,
     KC_TRANSPARENT, WWW_TN,         KC_MS_LEFT,     KC_MS_UP,       KC_MS_RIGHT,    KC_MS_WH_UP,    KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_7,             KC_8,           KC_9,           KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, WWW_TP,         KC_MS_BTN2,     KC_MS_DOWN,     KC_MS_BTN3,     KC_MS_WH_DOWN,                                                                  KC_TRANSPARENT, KC_4,             KC_5,           KC_6,           KC_TRANSPARENT, KC_TRNS,
+    KC_TRANSPARENT, WWW_TP,         KC_MS_BTN2,     KC_MS_DOWN,     KC_MS_BTN3,     KC_MS_WH_DOWN,                                                                  KC_LCTL,        KC_4,             KC_5,           KC_6,           KC_TRANSPARENT, KC_TRNS,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_BTN3,     KC_TRANSPARENT,                                 TO(_QW),        KC_TRANSPARENT, KC_1,             KC_2,           KC_3,           KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRNS,        KC_TRANSPARENT, KC_MS_BTN2,     KC_MS_BTN1,                                                                                                     KC_0,             KC_PDOT,        KC_TRNS,        KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
@@ -136,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_FN] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRNS,
     KC_TRANSPARENT, WWW_TN,         KC_MS_LEFT,     KC_MS_UP,       KC_MS_RIGHT,    KC_MS_WH_UP,    KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_PGUP,          KC_UP,          KC_PGDOWN,      KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, WWW_TP,         KC_MS_BTN2,     KC_MS_DOWN,     KC_MS_BTN3,     KC_MS_WH_DOWN,                                                                  KC_TRANSPARENT, KC_LEFT,          KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_MEDIA_PLAY_PAUSE,
+    KC_TRANSPARENT, WWW_TP,         KC_MS_BTN2,     KC_MS_DOWN,     KC_MS_BTN3,     KC_MS_WH_DOWN,                                                                  KC_LCTL,        KC_LEFT,          KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_MEDIA_PLAY_PAUSE,
 	KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_BTN3,     KC_TRANSPARENT,                                 TO(_QW),        KC_TRANSPARENT, KC_ACL0,          KC_ACL1,        KC_ACL2,        KC_NO,          KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_BTN2,     KC_MS_BTN1,                                                                                                     TO(_QW),          KC_PDOT,        KC_AUDIO_MUTE,  KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
@@ -166,13 +166,6 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-		case HM_A:
-		case HM_S:
-		case HM_D:
-		case HM_F:
-		case HM_J:
-		case HM_K:
-		case HM_L:
 		case HM_SCLN:
             return true;
         default:
@@ -182,12 +175,7 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-		case HM_S:
-		case HM_D:
-		case HM_F:
-		case HM_J:
-		case HM_K:
-		case HM_L:
+		case CTL_SL:
 			return TAPPING_TERM - 50;
 		case HM_SCLN:
 		case HM_A:
