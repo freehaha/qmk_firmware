@@ -199,32 +199,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 /*     } */
 /* } */
 
-uint8_t mod_state;
-
-bool bigram(keyrecord_t *record, uint16_t mod, uint16_t keycode1, uint16_t keycode2);
-bool bigram(keyrecord_t *record, uint16_t mod, uint16_t keycode1, uint16_t keycode2) {
-	if (record->event.pressed && record->tap.count == 1 && !record->tap.interrupted) {
-		if (mod_state & MOD_BIT(mod)) {
-			unregister_code(mod);
-			tap_code(keycode1);
-			tap_code(keycode2);
-			set_mods(mod_state);
-			return false;
-		}
-	}
-	return true;
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	/* mod_state = get_mods(); */
-	/* switch(keycode) { */
-	/* 	case HM_J: */
-	/* 		return bigram(record, KC_RALT, KC_L, KC_J); */
-	/* 	case HM_L: */
-	/* 		return bigram(record, KC_RSHIFT, KC_K, KC_L); */
-	/* 	case HM_S: */
-	/* 		return bigram(record, KC_LSHIFT, KC_D, KC_S); */
-	/* } */
 	return true;
 }
 

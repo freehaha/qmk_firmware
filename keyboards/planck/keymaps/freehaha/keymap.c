@@ -63,6 +63,10 @@ enum planck_keycodes {
 #define HM_L MT(MOD_LALT, KC_L)
 #define HM_SCLN MT(MOD_LGUI, KC_SCLN)
 
+#define HM_O MT(MOD_RSFT, KC_O)
+#define HM_W MT(MOD_LSFT, KC_W)
+#define CTL_SL RCTL_T(KC_SLASH)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -77,9 +81,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,     KC_U,    KC_I,     KC_O,    KC_P,    KC_BSPC,
-    KC_BSPC, HM_A,    HM_S,    HM_D,    HM_F,    KC_G,    KC_H,     HM_J,    HM_K,     HM_L,    HM_SCLN, KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,     KC_M,    KC_COMM,  KC_DOT,  SLCTL,   SENT,
+    KC_TAB,  KC_Q,    HM_W,    KC_E,    KC_R,    KC_T,    KC_Y,     KC_U,    KC_I,     HM_O,    KC_P,    KC_BSPC,
+    KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,     KC_J,    KC_K,     KC_L,    KC_SCLN, KC_QUOT,
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,     KC_M,    KC_COMM,  KC_DOT,  CTL_SL,  SENT,
     KC_ESC,  MO(_FN), KC_LALT, KC_LGUI, CENT,    EXT,     EXTR,     KC_SPC,  KC_GRAVE, KC_DEL,  MO(_FN), MO(_FN)
 ),
 
@@ -258,13 +262,6 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-		case HM_A:
-		case HM_S:
-		case HM_D:
-		case HM_F:
-		case HM_J:
-		case HM_K:
-		case HM_L:
 		case HM_SCLN:
             return true;
         default:
@@ -274,15 +271,13 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-		case HM_A:
-		case HM_S:
-		case HM_D:
-		case HM_F:
-		case HM_J:
-		case HM_K:
-		case HM_L:
+		case CTL_SL:
+			return TAPPING_TERM - 50;
 		case HM_SCLN:
-			return 150;
+		case HM_A:
+		case HM_O:
+		case HM_W:
+			return TAPPING_TERM + 30;
         default:
             return TAPPING_TERM;
     }
