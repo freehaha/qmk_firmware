@@ -68,6 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT,        SFT_Z,          KC_X,           KC_C,           KC_V,           KC_B,           KC_HYPR,                                        KC_MEH,         KC_N,           KC_M,           KC_COMMA,         KC_DOT,         SFT_SL,      KC_RSFT,
 	KC_ESC,         OSL(_FN),       KC_LALT,        KC_LGUI,        CENT,                                                                                                           KC_SPC,         LALT_T(KC_GRAVE), KC_LBRACKET,    MO(_FN),     KC_ESC,
                                                                                                     LCA_T(KC_APPLICATION),  KC_LGUI, KC_LALT,       LCTL_T(KC_ESCAPE),
+																									UON
                                                                                                                             KC_HOME, KC_PGUP,
                                                                                     OSL(_SYMBL),    KC_ESC,                 KC_END,  KC_PGDOWN,     KC_LALT,        OSL(_SYMBR)
   ),
@@ -105,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRNS,
     KC_TRANSPARENT, WWW_TP,         KC_MS_LEFT,     KC_MS_UP,       KC_MS_RIGHT,    KC_MS_WH_UP,    KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_7,             KC_8,           KC_9,           KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, WWW_TN,         KC_MS_BTN2,     KC_MS_DOWN,     KC_MS_BTN3,     KC_MS_WH_DOWN,                                                                  KC_LCTL,        KC_4,             KC_5,           KC_6,           KC_TRANSPARENT, KC_TRNS,
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, C(KC_W),        C(S(KC_T)),                                     TO(_QW),        KC_TRANSPARENT, KC_1,             KC_2,           KC_3,           KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, C(KC_W),        C(S(KC_F)),                                     TO(_QW),        KC_TRANSPARENT, KC_1,             KC_2,           KC_3,           KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRNS,        KC_TRANSPARENT, KC_MS_BTN2,     KC_MS_BTN1,                                                                                                     KC_0,             KC_PDOT,        KC_TRNS,        KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT,
@@ -135,11 +136,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                     KC_TRNS,        KC_TAB,         KC_END,         KC_PGDOWN,      KC_LALT,         SYMBR_ENT
   ),
 
+  // KC_F is the "t" in colemak
   [_FN] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRNS,
-    KC_TRANSPARENT, WWW_TP,         KC_MS_LEFT,     KC_MS_UP,       KC_MS_RIGHT,    KC_MS_WH_UP,    KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_PGUP,          KC_UP,          KC_PGDOWN,      KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, WWW_TN,         KC_MS_BTN2,     KC_MS_DOWN,     KC_MS_BTN3,     KC_MS_WH_DOWN,                                                                  KC_LCTL,        KC_LEFT,          KC_DOWN,        KC_RIGHT,       KC_TRANSPARENT, KC_MEDIA_PLAY_PAUSE,
-	KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, C(KC_W),        C(S(KC_T)),                                     TO(_QW),        KC_TRANSPARENT, KC_ACL0,          KC_ACL1,        KC_ACL2,        KC_NO,          KC_TRANSPARENT,
+    KC_TRANSPARENT, WWW_TP,         KC_MS_LEFT,     KC_MS_UP,       KC_MS_RIGHT,    KC_MS_WH_UP,    KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_PGUP,          KC_UP,          KC_PGDOWN,      KC_HOME,        KC_TRANSPARENT,
+    KC_TRANSPARENT, WWW_TN,         KC_MS_BTN2,     KC_MS_DOWN,     KC_MS_BTN3,     KC_MS_WH_DOWN,                                                                  KC_LCTL,        KC_LEFT,          KC_DOWN,        KC_RIGHT,       KC_END,         KC_MEDIA_PLAY_PAUSE,
+	KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, C(KC_W),        C(S(KC_F)),                                     TO(_QW),        KC_TRANSPARENT, KC_ACL0,          KC_ACL1,        KC_ACL2,        KC_NO,          KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_BTN2,     KC_MS_BTN1,                                                                                                     TO(_QW),          KC_PDOT,        KC_AUDIO_MUTE,  KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT,
