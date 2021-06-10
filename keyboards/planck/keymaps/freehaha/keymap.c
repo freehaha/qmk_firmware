@@ -66,7 +66,10 @@ enum planck_keycodes {
 #define HM_O MT(MOD_RSFT, KC_O)
 #define HM_W MT(MOD_LSFT, KC_W)
 #define CTL_SL RCTL_T(KC_SLASH)
+#define ALT_GRV LALT_T(KC_GRAVE)
 
+#define WWW_TN C(KC_TAB)
+#define WWW_TP C(S(KC_TAB))
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -82,9 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    HM_W,    KC_E,    KC_R,    KC_T,    KC_Y,     KC_U,    KC_I,     HM_O,    KC_P,    KC_BSPC,
-    KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,     KC_J,    KC_K,     KC_L,    KC_SCLN, KC_QUOT,
+    KC_BSPC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,     KC_J,    KC_K,     KC_L,    KC_SCLN, LGUI_T(KC_QUOT),
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,     KC_M,    KC_COMM,  KC_DOT,  CTL_SL,  SENT,
-    KC_ESC,  MO(_FN), KC_LALT, KC_LGUI, CENT,    EXT,     EXTR,     KC_SPC,  KC_GRAVE, KC_DEL,  MO(_FN), MO(_FN)
+    KC_ESC,  MO(_FN), KC_LALT, KC_LGUI, CENT,    EXT,     EXTR,     KC_SPC,  ALT_GRV,  KC_DEL,  MO(_FN), MO(_FN)
 ),
 
 /* Colemak
@@ -119,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_EXT] = LAYOUT_planck_grid(
 		KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,   KC_LPRN, KC_RPRN, KC_BSPC,
 		_______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS,    KC_PLUS,   KC_LCBR, KC_RCBR, KC_ESC,
-		_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PIPE,    KC_ENT,    KC_ESC,  KC_END,  _______,
+		_______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PIPE,    KC_ESC,    KC_ENT,  KC_END,  _______,
 		_______, _______, _______, _______, _______, _______, KC_ESC,  KC_BSPC,    _______,   _______, _______, _______
 		),
 
@@ -146,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_F1,     KC_F2,   KC_F3,      KC_F4,   KC_F5,   KC_F6,      KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,       KC_F12,
 		_______,   _______, _______,    _______, _______, _______,    KC_HOME, KC_PGUP, KC_UP,   KC_PGDN,  _______,      KC_PSCR,
 		_______,   _______, _______,    _______, _______, _______,    KC_END,  KC_LEFT, KC_DOWN, KC_RIGHT, KC_INS,       KC_SLCK,
-		_______, _______, _______,    _______, _______, TO(_QWERTY),_______, _______, _______, _______,  TG(_NUMBERS), KC_PAUSE
+		_______,   _______, _______,    _______, _______, TO(_QWERTY),_______, _______, _______, _______,  TG(_NUMBERS), KC_PAUSE
 		),
 
 [_NUMBERS] = LAYOUT_planck_grid( /* NUM PAD */
@@ -168,10 +171,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_SWITCH] = LAYOUT_planck_grid(
-		_______, _______, KC_MS_L, KC_MS_U, KC_MS_R, KC_WH_U,     KC_BTN2, KC_BTN1, KC_MS_U, KC_ENT,  _______, QWERTY,
-		_______, _______, KC_BTN2, KC_MS_D, KC_BTN3, KC_WH_D,     _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, COLEMAK,
-		_______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, KC_BTN2, KC_BTN1, TO(_QWERTY), _______, _______, _______, _______, _______, RESET
+		_______, WWW_TP,  KC_MS_L, KC_MS_U, KC_MS_R, KC_WH_U,     _______, KC_PGUP, KC_UP,   KC_PGDN,  KC_HOME, QWERTY,
+		_______, WWW_TN,  KC_BTN2, KC_MS_D, KC_BTN3, KC_WH_D,     _______, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END,  COLEMAK,
+		_______, _______, _______, _______, G(KC_W), S(G(KC_F)),  _______, _______, _______, _______, _______,  KC_NO,
+		_______, _______, _______, KC_BTN2, KC_BTN1, TO(_QWERTY), _______, _______, _______, _______, _______,  RESET
 	)
 };
 
@@ -254,6 +257,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 		case CENT:
+		case SENT:
             return false;
         default:
             return true;
