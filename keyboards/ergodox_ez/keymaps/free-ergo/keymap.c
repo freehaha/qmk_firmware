@@ -181,6 +181,7 @@ bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 		case CTL_SL:
+		case SFT_Z:
 			return TAPPING_TERM - 50;
 		case HM_SCLN:
 		case HM_A:
