@@ -60,7 +60,6 @@ enum layers {
 #define SFT_SL RSFT_T(KC_SLASH)
 #define SFT_Z RSFT_T(KC_Z)
 
-
 #define PASTE S(KC_INS)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QW] = LAYOUT_ergodox_pretty(
@@ -131,7 +130,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_RBRC,        KC_F11,         KC_S,           KC_D,           KC_F,           KC_G,                                                                           KC_H,           KC_J,           KC_K,           KC_L,           LT(_FN, KC_SCLN), LGUI_T(KC_QUOTE),
     KC_LSFT,        KC_Z,           KC_X,           KC_C,           KC_GRAVE,       KC_F12,         KC_TRNS,                                        KC_MEH,         KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH), KC_RSHIFT,
     LALT(KC_N),     KC_NO,          KC_TRNS,        KC_LALT,        KC_LSFT,                                                                                                        KC_SPACE,       KC_GRAVE,       KC_LBRACKET,    MO(_FN),          KC_ESC,
-
                                                                                                     TG(_GAME),      KC_LGUI,        KC_LALT,        LCTL_T(KC_ESCAPE),
                                                                                                                     KC_HOME,        KC_PGUP,
                                                                                     KC_TRNS,        KC_TAB,         KC_END,         KC_PGDOWN,      KC_LALT,         SYMBR_ENT
