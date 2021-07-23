@@ -3,6 +3,8 @@
 LTO_ENABLE = yes
 CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
-WEBUSB_ENABLE = yes
-ORYX_ENABLE = yes
+# WEBUSB_ENABLE = yes
+# ORYX_ENABLE = yes
 RGBLIGHT_ENABLE = no
+DEBOUNCE_TYPE = sym_eager_pr
+# DEBOUNCE_TYPE = sym_defer_pk

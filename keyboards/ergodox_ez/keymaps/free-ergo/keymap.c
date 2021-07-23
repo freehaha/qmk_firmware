@@ -54,6 +54,9 @@ enum layers {
 #define HM_L MT(MOD_RALT, KC_L)
 #define HM_SCLN MT(MOD_RGUI, KC_SCLN)
 
+#define HM_I MT(MOD_RSFT, KC_I)
+#define HM_E MT(MOD_LSFT, KC_E)
+
 #define HM_O MT(MOD_RSFT, KC_O)
 #define HM_W MT(MOD_LSFT, KC_W)
 #define CTL_SL RCTL_T(KC_SLASH)
@@ -65,8 +68,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QW] = LAYOUT_ergodox_pretty(
     KC_CAPS,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_LEFT,                                        KC_RIGHT,       KC_6,           KC_7,           KC_8,             KC_9,           KC_0,        KC_NO,
     KC_TAB,         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           OSL(_SWITCH),                                   TG(_UTIL),      KC_Y,           KC_U,           KC_I,             KC_O,           KC_P,        KC_BSPC,
-    KC_BSPC,        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,                                                                           KC_H,           KC_J,           KC_K,             KC_L,           KC_SCLN,     LGUI_T(KC_QUOTE),
-    KC_LCTL,        SFT_Z,          KC_X,           KC_C,           KC_V,           KC_B,           KC_HYPR,                                        KC_MEH,         KC_N,           KC_M,           KC_COMMA,         KC_DOT,         SFT_SL,      KC_RSFT,
+    KC_BSPC,        HM_A,           HM_S,           HM_D,           HM_F,           KC_G,                                                                           KC_H,           HM_J,           HM_K,             HM_L,           HM_SCLN,     LGUI_T(KC_QUOTE),
+    KC_LCTL,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           KC_HYPR,                                        KC_MEH,         KC_N,           KC_M,           KC_COMMA,         KC_DOT,         KC_SLASH,    KC_RSFT,
 	KC_ESC,         OSL(_FN),       KC_LALT,        KC_LGUI,        CENT,                                                                                                           LSFT_T(KC_SPC), LALT_T(KC_GRAVE), KC_LBRACKET,    MO(_FN),     KC_ESC,
                                                                                                     LCA_T(KC_APPLICATION),  KC_LGUI, KC_LALT,       LCTL_T(KC_ESCAPE),
                                                                                                                             KC_HOME, KC_PGUP,
@@ -161,8 +164,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 		case CENT:
-		/* case SFT_Z: */
-		case SFT_SL:
             return false;
         default:
             return true;
@@ -171,30 +172,36 @@ bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
 
 bool get_tapping_force_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+		case HM_A:
+		case HM_S:
+		case HM_D:
+		case HM_F:
+		case HM_J:
+		case HM_K:
+		case HM_L:
 		case HM_SCLN:
-            return true;
-        default:
+			return true;
+		default:
             return false;
     }
 }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-		case CTL_SL:
-		case SFT_Z:
-			return TAPPING_TERM - 80;
-		case HM_SCLN:
-		case HM_A:
-		case HM_O:
-		case HM_W:
-			return TAPPING_TERM;
-		case SYMBL_ESC:
-		case SYMBR_ENT:
-            return 100;
+		// case HM_A:
+		/* case HM_S: */
+		case HM_D:
+		case HM_F:
+		case HM_J:
+		case HM_K:
+		/* case HM_L: */
+		// case HM_SCLN:
+			return TAPPING_TERM - 50;
         default:
             return TAPPING_TERM;
     }
 }
+
 
 /* bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) { */
 /*     switch (keycode) { */
